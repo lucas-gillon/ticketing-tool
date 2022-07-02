@@ -1,0 +1,22 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  color: rgb(0, 0, 0);
+}
+button:hover {
+  cursor:pointer;
+}
+fieldset {
+  position: relative;
+  width: 200px;
+  margin: 0%;
+  text-align: center;
+  border-radius:8px;
+  border-color: white;
+  border-style: solid;
+}
+h1 {
+  font-family: "Open Sans", sans-serif;
+}
+p, a {
+  font-family: "Open Sans", sans-serif;
+}

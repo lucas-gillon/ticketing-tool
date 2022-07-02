@@ -1,7 +1,7 @@
-import { GetServerSideProps } from "next";
+import { GetServerSideProps } from "next/types";
 import { getDatabase } from "../src/getDatabase";
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async ({}) => {
   const mongodb = await getDatabase();
 
   const response = await mongodb
