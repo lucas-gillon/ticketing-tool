@@ -3,13 +3,12 @@ const MONGODB_URL = process.env.MONGODB_URL || "";
 
 let cachedDb: MongoClient;
 
-export function getDatabase(): Promise<MongoClient> {
+export async function getDatabase(): Promise<MongoClient> {
   if (cachedDb) {
     return Promise.resolve(cachedDb);
   }
 
-  return MongoClient.connect(MONGODB_URL).then((db) => {
-    cachedDb = db;
-    return cachedDb;
-  });
+  const db = await MongoClient.connect(MONGODB_URL);
+  cachedDb = db;
+  return cachedDb;
 }

@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next/types";
-import { getDatabase } from "../src/getDatabase";
+import Layout from "../../components/layout";
+import { getDatabase } from "../../src/getDatabase";
 
 export const getServerSideProps: GetServerSideProps = async ({}) => {
   const mongodb = await getDatabase();
@@ -25,7 +26,11 @@ export const getServerSideProps: GetServerSideProps = async ({}) => {
 
 const Form: React.FC<{ users: unknown }> = ({ users }) => {
   console.log(users);
-  return <div>test</div>;
+  return (
+    <Layout>
+      <div className="container">test</div>
+    </Layout>
+  );
 };
 
 export default Form;
