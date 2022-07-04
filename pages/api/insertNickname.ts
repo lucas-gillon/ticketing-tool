@@ -17,7 +17,6 @@ export default async function handler(
       .db()
       .collection("users")
       .updateOne({ email: email }, { $set: { pseudo: pseudo } });
-    // console.log("l'user existe");
   } else {
     await mongodb.db().collection("users").insertOne({
       pseudo: pseudo,

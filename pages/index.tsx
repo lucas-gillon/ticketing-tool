@@ -17,45 +17,52 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     .findOne({ email: email });
   const userDB = JSON.parse(JSON.stringify(response));
 
-  let isUser: boolean = false;
-  if (userDB === null) {
-    isUser = false;
-  }
   let isNick: boolean = false;
   if (userDB?.pseudo === null || userDB?.pseudo === "") {
     isNick = false;
   } else {
     isNick = true;
   }
-  console.log("\n--------------------------------------------------------", isNick);
+
+  let pseudo: string = userDB?.pseudo.toString();
+  if (userDB?.pseudo === undefined) {
+    pseudo = "you don't have pseudo";
+  }
+
   return {
     props: {
-      isUser: isUser,
       isNick: isNick,
-      pseudo: userDB?.pseudo.toString(),
+      pseudo: pseudo,
     },
   };
 };
 
-const Home: React.FC<{ isUser: boolean; isNick: boolean, pseudo: unknown }> = ({
-  isUser,
+const Home: React.FC<{ isNick: boolean; pseudo: unknown }> = ({
   isNick,
-  pseudo
+  pseudo,
 }) => {
   const { user } = useUser();
   return (
     <Layout>
       <div className="container">
-        {user ? (
-          <h1>Vous êtes connecté</h1>
-        ) : (
+        {!user ? (
           <Link href="/api/auth/login">
             <Button style={{ marginTop: "2em" }} variant="secondary">
-              Veuillez vous connecter pour continuer
+              Veuillez vous connecter pour continuer &rarr;
             </Button>
           </Link>
+        ) : isNick ? (
+          <div className="container" style={{ marginTop: "1em" }}>
+            {`Your nickname is : ${pseudo}`}<br />
+            <Link href="/choose-nickname">
+              <Button style={{ marginTop: "0.5em" }} variant="secondary">
+                choisir pseudo &rarr;
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          "pas pseudo"
         )}
-        {isNick ? `Your nickname is : ${pseudo}` : "pas pseudo"}
       </div>
     </Layout>
   );

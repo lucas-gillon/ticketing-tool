@@ -23,23 +23,27 @@ const Layout: React.FC<{ children: any }> = ({
             <Navbar.Collapse id="basic-navbar-nav">
               {user ? (
                 <Nav.Link href="/api/auth/logout">
-                <Button variant="secondary" style={{color: "black"}}>Logout</Button>
-              </Nav.Link>
+                  <Button style={{ color: "white", backgroundColor: "red" }}>
+                    Logout
+                  </Button>
+                </Nav.Link>
               ) : (
                 <Nav.Link href="/api/auth/login">
-                  <Button variant="secondary" style={{color: "black"}}>Login or Signup</Button>
+                  <Button style={{ color: "white", backgroundColor: "green" }}>
+                    Login or Signup
+                  </Button>
                 </Nav.Link>
               )}
             </Navbar.Collapse>
           </Container>
         </Navbar>
         {children}
-        <footer>
+        {/* <footer>
           <hr />
           <div className="container">
             <p>Made by Lucas Gillon</p>
           </div>
-        </footer>
+              </footer> */}
       </div>
     </>
   );
