@@ -17,7 +17,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     .collection("users")
     .findOne({ email: email });
   const userDB = JSON.parse(JSON.stringify(response));
-  console.log(userDB);
 
   let isUser: boolean = false;
   if (userDB === null) {
