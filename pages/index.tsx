@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
     props: {
       isNick: isNick,
       pseudo: pseudo,
-      email: userDB?.email,
+      email: email || "",
     },
   };
 };
@@ -57,12 +57,6 @@ const Home: React.FC<{ isNick: boolean; pseudo: unknown; email: unknown }> = ({
     e.preventDefault();
     SetTicketContent(e.target.value);
     console.log(ticketContent);
-    const temp = {
-      pseudo: pseudo,
-      email: email,
-      ticket_title: ticketTitle,
-      ticket_content: ticketContent,
-    };
   };
   const handleSubmit = (e: { preventDefault: () => void; target: any }) => {
     e.preventDefault();

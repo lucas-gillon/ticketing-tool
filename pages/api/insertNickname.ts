@@ -21,6 +21,7 @@ export default async function handler(
     await mongodb.db().collection("users").insertOne({
       pseudo: pseudo,
       email: email,
+      tickets: {},
     });
   }
   res.end();
